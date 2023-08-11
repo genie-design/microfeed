@@ -3,8 +3,10 @@
   "version": "0.1.2",
   "license": "MIT",
   "scripts": {
+    "build:dev": "NODE_ENV=development webpack --config ./webpack.config.js",
     "build:production": "NODE_ENV=production webpack --config ./webpack.config.js",
     "dev": "yarn setup:development && DEPLOYMENT_ENVIRONMENT=development wrangler pages dev --d1 FEED_DB --compatibility-date=2022-11-17 --persist -- webpack serve --host localhost --mode development",
+    "wrangler": "yarn setup:development && DEPLOYMENT_ENVIRONMENT=development wrangler pages dev webpack serve --compatibility-date=2022-11-17 --live-reload",
     "setup:development": "yarn install && node ops/generate_local_vars.js && node ops/init_feed_db.js",
     "setup:production": "sh ops/generate_vars_toml.sh && yarn install && node ops/init_r2.js && node ops/init_feed_db.js && node ops/init_project.js",
     "deploy:cloudflare": "node ops/sync_project_config.js && yarn build:production",
@@ -66,6 +68,6 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1",
     "webpack-shell-plugin-next": "^2.2.2",
-    "wrangler": "^2.9.1"
+    "wrangler": "^3.3.0"
   }
 }

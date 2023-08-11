@@ -5,7 +5,8 @@ const webpackStats = require("../../../functions/webpack-stats.json");
 export default class HtmlHeader extends React.Component {
   getWebpackRealUrl(key) {
     try {
-      return webpackStats.assets[webpackStats.chunks[key][0]].publicPath;
+      console.log(key, webpackStats.assets[webpackStats?.chunks?.[key]?.[0]]?.publicPath || null);
+      return webpackStats.assets[webpackStats?.chunks?.[key]?.[0]]?.publicPath || null;
     } catch (err) {
       console.log(err);
       return null;
